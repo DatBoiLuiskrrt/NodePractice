@@ -3,8 +3,8 @@ const express = require('express'); // import the express package
 const server = express(); // creates the server
 
 // handle requests to the root of the api, the / route
-server.get('/', (req, res) => {
-  res.send('Hello from Express');
+server.get('/hobbits', (req, res) => {
+  res.send('Welcome from Hobbitown ');
 });
 
 // watch for connections on port 5000
