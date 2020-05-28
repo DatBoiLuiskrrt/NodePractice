@@ -5,6 +5,7 @@ server.use(express.json());
 // handle requests to the root of the api, the / route
 //GET READS DATA
 server.get('/hobbits', (req, res) => {
+    console.log(req.query);
   const sortField = req.query.sortby || 'id';
   const hobbits = [
       {
@@ -19,6 +20,7 @@ server.get('/hobbits', (req, res) => {
     const response = hobbits.sort((a,b) => 
         a[sortField] < b[sortField] ? -1 : 1
     );
+    res.status(200).json(response);
 });
 
 server.post('/hobbits', (req,res) => {
