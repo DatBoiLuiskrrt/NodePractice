@@ -1,5 +1,5 @@
 const express = require('express'); // import the express package
-
+const port = 4000;
 const server = express(); // creates the server
 server.use(express.json());
 // handle requests to the root of the api, the / route
@@ -44,5 +44,5 @@ server.delete('/hobbits/:id', (req,res) => {
 
 // watch for connections on port 5000
 server.listen(4000, () =>
-  console.log('Server running on http://localhost:5000')
+  console.log(`server running ${port}`)
 );
