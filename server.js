@@ -10,11 +10,23 @@ server.get('/hobbits', (req, res) => {
   const hobbits = [
       {
           id: 1,
-          name: 'Samwise Gamgee'
+          name: 'Samwise Gamgee',
+          age: 20
       },
       {
           id: 2,
-          name: 'Frodo Baggins'
+          name: 'Frodo Baggins',
+          age: 21
+      },
+      {
+          id:3,
+          name: 'Pirata de Culiacan',
+          age:19
+      },
+      {
+          id:4,
+          name: "El Mencho",
+          age: 50
       }
     ];
     const response = hobbits.sort((a,b) => 
