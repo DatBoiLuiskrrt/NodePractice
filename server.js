@@ -35,13 +35,44 @@ server.get('/hobbits', (req, res) => {
     res.status(200).json(response);
 });
 
-server.post('/hobbits', (req,res) => {
-    res.status(201).json( { url: '/hobbits', operation: "POST" });
+let hobbits = [
+    {
+      id: 1,
+      name: 'Bilbo Baggins',
+      age: 111,
+    },
+    {
+      id: 2,
+      name: 'Frodo Baggins',
+      age: 33,
+    },
+  ];
+  let nextId = 3;
+  
+  // and modify the post endpoint like so:
+  server.post('/hobbits', (req, res) => {
+      console.log(req.body);
+    const hobbit = req.body;
+    hobbit.id = nextId++;
+  
+    hobbits.push(hobbit);
+  
+    res.status(201).json(hobbits);
+  });
 
-}) 
-server.put('/hobbits', (req,res) => {
-    res.status(200).json( { url: '/hobbits', operation: "PUT" });
-})
+  server.put('/hobbits/:id', (req, res) => {
+    const hobbit = hobbits.find(h => h.id == req.params.id);
+    console.log(hobbit);
+  
+    if (!hobbit) {
+      res.status(404).json({ message: 'Hobbit does not exist' });
+    } else {
+      // modify the existing hobbit
+      Object.assign(hobbit, req.body);
+  
+      res.status(200).json(hobbit);
+    }
+  });
 
 server.delete('/hobbits/:id', (req,res) => {
     const id = req.params.id;
